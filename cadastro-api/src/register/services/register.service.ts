@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, Injectable } from '@nestjs/common';
 import { IRegisterService } from '../interfaces/register.service.interface';
 import { RegisterRepository } from '../repository/register.repository';
 import { RegisterDto } from '../dto/register.dto';
@@ -8,7 +8,14 @@ import { RegisterEntity } from '../entities/register.entity';
 export class RegisterService implements IRegisterService {
     constructor(private readonly registerRepository: RegisterRepository) { }
 
-    create(dto: RegisterDto): Promise<RegisterEntity> {
+    async create(dto: RegisterDto): Promise<RegisterEntity> {
+
+        const existingUser = await this.registerRepository.findByEmailOrCpf(dto.email, dto.cpf);
+
+        if (existingUser) {
+            throw new ConflictException('Email or CPF already exists');
+        }
+
         return this.registerRepository.
             save(dto);
     }
