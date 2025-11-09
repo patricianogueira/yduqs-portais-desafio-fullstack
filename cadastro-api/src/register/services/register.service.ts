@@ -8,7 +8,7 @@ import { RegisterEntity } from '../entities/register.entity';
 export class RegisterService implements IRegisterService {
     constructor(private readonly registerRepository: RegisterRepository) { }
 
-    create(dto: RegisterDto): RegisterEntity {
+    create(dto: RegisterDto): Promise<RegisterEntity> {
         return this.registerRepository.
             save(dto);
     }

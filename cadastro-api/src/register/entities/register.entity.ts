@@ -4,10 +4,11 @@ export class RegisterEntity {
     id: string = uuid();
     fullName: string;
     cpf: string;
-    birthDate: string;
+    birthDate: Date;
     email: string;
     phone: string;
     highSchoolGraduationYear: string;
     agreeToTerms: boolean;
-    acceptUpdates?: boolean;
+    acceptUpdates?: boolean | null;
+    createdAt: Date;
 }
