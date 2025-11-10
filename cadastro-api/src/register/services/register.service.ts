@@ -13,7 +13,7 @@ export class RegisterService implements IRegisterService {
         const existingUser = await this.registerRepository.findByEmailOrCpf(dto.email, dto.cpf);
 
         if (existingUser) {
-            throw new ConflictException('Email or CPF already exists');
+            throw new ConflictException('Email ou CPF já existe');
         }
 
         return this.registerRepository.
