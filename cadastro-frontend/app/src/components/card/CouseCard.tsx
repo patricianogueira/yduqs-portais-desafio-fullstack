@@ -1,34 +1,20 @@
 "use client";
-import { Card, CardContent, Button, Typography, Box } from "@mui/material";
-import { InfoOutline } from "@mui/icons-material";
 
-interface CourseOptionProps {
-  type: string;
-  price?: PriceDetails;
-  info?: string;
-  label: string;
-  address: Address;
-  onSelect?: () => void;
-}
-
-interface PriceDetails {
-  value?: string;
-  qtd: string;
-}
-
-interface Address {
-  title: string;
-  description: string;
-}
+import { Card, Box, Button, Typography } from "@mui/material";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { CourseOptionProps } from "./types";
 
 export function CourseOptionCard({
   type,
-  price,
-  info,
   label,
   address,
+  typeCard,
+  price,
+  info,
   onSelect,
 }: CourseOptionProps) {
+  const hasPrice = Boolean(price);
+
   return (
     <Card
       sx={{
@@ -37,7 +23,7 @@ export function CourseOptionCard({
         borderRadius: 2,
         overflow: "hidden",
         border: "1px solid",
-        height: price ? 398 : 377,
+        height: hasPrice ? 398 : 377,
       }}
     >
       <Box
@@ -65,8 +51,8 @@ export function CourseOptionCard({
           <span>{label}</span>
         </Box>
 
-        <Box sx={{ p: 3, bgcolor: "#144BC8", height: price ? 209 : 198 }}>
-          {price ? (
+        <Box sx={{ p: 3, bgcolor: "#144BC8", height: hasPrice ? 209 : 198 }}>
+          {hasPrice ? (
             <>
               <Typography
                 variant="body2"
@@ -98,7 +84,7 @@ export function CourseOptionCard({
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  {price.qtd}
+                  {price?.qtd}
                 </Typography>
 
                 <Typography
@@ -110,7 +96,7 @@ export function CourseOptionCard({
                     fontFamily: "Inter, sans-serif",
                   }}
                 >
-                  {price.value}
+                  {price?.value}
                 </Typography>
               </Box>
 
@@ -127,8 +113,15 @@ export function CourseOptionCard({
               </Typography>
             </>
           ) : (
-            <Box sx={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: 1 }}>
-              <InfoOutline fontSize="medium" />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                gap: 1,
+              }}
+            >
+              <InfoOutlinedIcon fontSize="medium" />
               <Typography
                 variant="body2"
                 sx={{ fontFamily: "Inter, sans-serif" }}
@@ -141,7 +134,7 @@ export function CourseOptionCard({
 
         <Button
           variant="contained"
-          onClick={onSelect}
+          onClick={() => onSelect?.(typeCard)}
           sx={{
             bgcolor: "#EE325D",
             "&:hover": { bgcolor: "#e8435e" },
