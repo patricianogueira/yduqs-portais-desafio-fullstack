@@ -19,6 +19,7 @@ import AccordionInfo from "../accordion/Accordion";
 export default function ParcelDrawer({
     open,
     onClose,
+    onClick,
     content,
     infoMessage,
     infoAccordions
@@ -181,6 +182,7 @@ export default function ParcelDrawer({
                             textTransform: "none",
                             ":hover": { backgroundColor: "#ff4670" },
                         }}
+                        onClick={() => onClick()}
                     >
                         Avançar
                     </Button>

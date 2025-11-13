@@ -12,4 +12,5 @@ export interface ParcelDrawerProps {
     infoMessage?: string;
     open: boolean;
     onClose: () => void;
+    onClick: () => void;
 }
