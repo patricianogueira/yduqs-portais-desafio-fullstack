@@ -115,6 +115,7 @@ export default function FormPage() {
           className="flex flex-col gap-6 max-w-lg mx-auto py-8 w-full"
         >
           <TextField
+            id="nome-completo"
             label="Nome completo"
             value={form.nome}
             onChange={(e) => handleChange("nome", e.target.value)}
@@ -124,6 +125,7 @@ export default function FormPage() {
           />
 
           <TextField
+            id="cpf"
             label="CPF"
             value={form.cpf}
             onChange={(e) => handleChange("cpf", e.target.value)}
@@ -133,6 +135,7 @@ export default function FormPage() {
           />
 
           <TextField
+            id="data-nascimento"
             label="Data de nascimento"
             type="date"
             value={form.nascimento}
@@ -143,6 +146,7 @@ export default function FormPage() {
           />
 
           <TextField
+            id="email"
             label="E-mail"
             type="email"
             value={form.email}
@@ -153,6 +157,7 @@ export default function FormPage() {
           />
 
           <TextField
+            id="celular-contato"
             label="Celular para contato"
             value={form.celular}
             onChange={(e) => handleChange("celular", e.target.value)}
@@ -162,6 +167,7 @@ export default function FormPage() {
           />
 
           <TextField
+            id="ano-conclusao"
             label="Ano de conclusão do ensino médio"
             value={form.anoConclusao}
             onChange={(e) => handleChange("anoConclusao", e.target.value)}
@@ -172,6 +178,7 @@ export default function FormPage() {
           <FormControlLabel
             control={
               <Checkbox
+                role="checkbox"
                 checked={form.whatsapp}
                 onChange={(e) => handleChange("whatsapp", e.target.checked)}
               />
@@ -191,6 +198,7 @@ export default function FormPage() {
             <FormControlLabel
               control={
                 <Checkbox
+                  role="checkbox"
                   checked={form.termos}
                   onChange={(e) => handleChange("termos", e.target.checked)}
                 />
