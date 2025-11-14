@@ -15,6 +15,7 @@ import { validateForm, FormUserData } from "../src/utils/formValidation";
 import { RegisterRequest } from "./types";
 import { registerUser } from "../src/services/registerService";
 import FormAlertDialog from "../src/components/alert/AlertDialog";
+import LoadingOverlay from "../src/components/loading/Loading";
 
 export default function FormPage() {
   const [form, setForm] = useState<FormUserData>({
@@ -29,11 +30,15 @@ export default function FormPage() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [loading, setLoading] = useState(false);
+
   const [modal, setModal] = useState({
     open: false,
     message: "",
     type: "success" as "success" | "error",
   });
+
+
   const handleChange = (field: string, value: any) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
@@ -64,6 +69,8 @@ export default function FormPage() {
 
 
     try {
+      setLoading(true);
+
       await registerUser(payload);
 
       setModal({ open: true, message: "Formulário enviado com sucesso!", type: "success" });
@@ -81,6 +88,8 @@ export default function FormPage() {
 
     } catch (err: any) {
       setModal({ open: true, message: err.message, type: "error" });
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -242,6 +251,8 @@ export default function FormPage() {
       </section>
 
       <Footer />
+
+      <LoadingOverlay open={loading} />
 
       <FormAlertDialog
         open={modal.open}
