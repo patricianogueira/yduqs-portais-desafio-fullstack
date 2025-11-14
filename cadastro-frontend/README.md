@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📘 Desafio YDUQS – Cadastro Frontend
 
-## Getting Started
+Aplicação desenvolvida em **Next.js**, **React**, **Material UI (MUI)** e **TailwindCSS** para o processo seletivo da YDUQS.  
+O projeto consiste em uma página de formulário com validação, máscara, envio de dados e feedback visual ao usuário.
 
-First, run the development server:
+## 🚀 Tecnologias Utilizadas
 
+- **Next.js 14** – Estrutura principal do projeto  
+- **React 18** – Biblioteca de UI  
+- **Material UI (MUI)** – Componentes visuais  
+- **TailwindCSS** – Estilização utilitária  
+- **TypeScript** – Tipagem estática  
+- **Jest + React Testing Library** – Testes de interface  
+- **Axios** – Comunicação com a API  
+
+## 🏁 Como Rodar o Projeto
+
+### 1️⃣ Clonar o repositório
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/patricianogueira/yduqs-portais-desafio-fullstack.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Antes de executar os comandos abaixo, navegue até a pasta do projeto:**
+```bash
+cd cadastro-frontend
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2️⃣ Instalar dependências
+```bash
+npm install
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```
 
-## Learn More
+### 3️⃣ Rodar o servidor de desenvolvimento
+```bash
+npm run dev
 
-To learn more about Next.js, take a look at the following resources:
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4️⃣ Rodar os testes
+```bash
+npm test
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+## 📚 Documentações Oficiais
 
-## Deploy on Vercel
+Aqui estão as principais documentações utilizadas no projeto:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Next.js**  
+  https://nextjs.org/docs
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **React**  
+  https://react.dev/learn
+
+- **Material UI (MUI)**  
+  https://mui.com/material-ui/getting-started/overview/
+
+- **TailwindCSS**  
+  https://tailwindcss.com/docs
+
+- **TypeScript**  
+  https://www.typescriptlang.org/docs/
+
+- **Axios**  
+  https://axios-http.com/docs/intro
+
+- **Jest**  
+  https://jestjs.io/docs/getting-started
+
+- **React Testing Library**  
+  https://testing-library.com/docs/react-testing-library/intro/
+

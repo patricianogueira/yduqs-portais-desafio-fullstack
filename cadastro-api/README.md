@@ -117,6 +117,36 @@ para visualizar e testar os endpoints disponíveis.
 - Certifique-se de que as portas necessárias (ex: 5432 para PostgreSQL) estejam livres.
 - Configure o arquivo `.env` conforme necessário antes de rodar a aplicação.
 
+## 🛠️ Arquivo `.env` — Exemplo de Configuração
+
+Crie um arquivo `.env` na raiz do projeto `cadastro-api` com as seguintes variáveis:
+
+```env
+# Porta da aplicação NestJS
+PORT=3000
+
+# Configuração do banco PostgreSQL
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=postgres
+DB_PASSWORD=teste
+DB_NAME=cadastro
+
+# URL completa de conexão do Prisma
+# Substitua:
+#   <USER>       pelo usuário do banco
+#   <PASSWORD>   pela senha
+#   <HOST>       pelo host (ex: localhost)
+#   <PORT>       pela porta (ex: 5432)
+#   <DATABASE>   pelo nome do seu banco
+DATABASE_URL="postgresql://<USER>:<PASSWORD>@<HOST>:<PORT>/<DATABASE>?schema=public"
+
+# Ambiente
+NODE_ENV=development
+
+```
+
+
 ## Contato
 
 Dúvidas ou sugestões? Entrar com contato com Patricia Nogueira, no email snogueira.patricia@gmail.com
