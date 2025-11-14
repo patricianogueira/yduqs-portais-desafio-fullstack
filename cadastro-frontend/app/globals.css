@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap");
+@import "tailwindcss";
+
+/* 🌈 Variáveis globais */
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+/* 🎨 Estilos globais */
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+}
