@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import {
   Box,
@@ -7,12 +8,13 @@ import {
   Button,
   Checkbox,
   FormControlLabel,
-  Snackbar,
-  Alert,
 } from "@mui/material";
 import Navbar from "../src/components/navbar/Navbar";
 import Footer from "../src/components/footer/Footer";
 import { validateForm, FormUserData } from "../src/utils/formValidation";
+import { RegisterRequest } from "./types";
+import { registerUser } from "../src/services/registerService";
+import FormAlertDialog from "../src/components/alert/AlertDialog";
 
 export default function FormPage() {
   const [form, setForm] = useState<FormUserData>({
@@ -27,14 +29,18 @@ export default function FormPage() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [alertOpen, setAlertOpen] = useState(false);
-
+  const [modal, setModal] = useState({
+    open: false,
+    message: "",
+    type: "success" as "success" | "error",
+  });
   const handleChange = (field: string, value: any) => {
     setForm((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const validationErrors = validateForm(form);
 
@@ -44,7 +50,38 @@ export default function FormPage() {
     }
 
     setErrors({});
-    setAlertOpen(true);
+
+    const payload: RegisterRequest = {
+      fullName: form.nome,
+      cpf: form.cpf,
+      birthDate: form.nascimento,
+      email: form.email,
+      phone: form.celular,
+      highSchoolGraduationYear: form.anoConclusao,
+      agreeToTerms: form.termos,
+      acceptUpdates: form.whatsapp,
+    };
+
+
+    try {
+      await registerUser(payload);
+
+      setModal({ open: true, message: "Formulário enviado com sucesso!", type: "success" });
+
+      setForm({
+        nome: "",
+        cpf: "",
+        nascimento: "",
+        email: "",
+        celular: "",
+        anoConclusao: "",
+        termos: false,
+        whatsapp: false,
+      });
+
+    } catch (err: any) {
+      setModal({ open: true, message: err.message, type: "error" });
+    }
   };
 
   return (
@@ -175,9 +212,6 @@ export default function FormPage() {
                   </a>
                   , de acordo com a nossa política de privacidade.
                 </p>
-
-
-
               }
             />
             {errors.termos && (
@@ -209,20 +243,13 @@ export default function FormPage() {
 
       <Footer />
 
-      <Snackbar
-        open={alertOpen}
-        autoHideDuration={6000}
-        onClose={() => setAlertOpen(false)}
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-      >
-        <Alert
-          onClose={() => setAlertOpen(false)}
-          severity="success"
-          sx={{ width: "100%", fontFamily: "Inter, sans-serif" }}
-        >
-          Formulário enviado com sucesso!
-        </Alert>
-      </Snackbar>
+      <FormAlertDialog
+        open={modal.open}
+        message={modal.message}
+        type={modal.type}
+        onClose={() => setModal({ ...modal, open: false })}
+      />
+
     </main>
   );
 }
